@@ -1,65 +1,96 @@
-import Image from "next/image";
+import Link from "next/link";
 
-export default function Home() {
+import { Button } from "@/components/ui/button";
+import { PageLayout } from "@/components/layout/PageLayout";
+
+import { projects } from "@/lib/projects";
+import { ProjectCard } from "@/components/projects/ProjectCard";
+// import { Metadata } from "next";
+
+
+
+const featuredProjects = projects.filter(
+  (project) => project.featured
+);
+
+export default function HomePage() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+    <PageLayout>
+      {/* Hero */}
+      <section className="py-24">
+        <div className="max-w-3xl">
+          <p className="eyebrow">Hi, I'm Kyle.</p>
+
+          <h1 className="mt-4">
+            Frontend Developer Building Modern Web Experiences
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+
+          <p className="lead mt-6">
+            I create fast, accessible, and maintainable web applications using
+            React, TypeScript, Next.js, and modern development workflows.
           </p>
+
+          <div className="mt-8 flex gap-4">
+            <Button asChild>
+              <Link href="/projects">View Projects</Link>
+            </Button>
+
+            <Button variant="outline" asChild>
+              <Link href="/contact">Contact Me</Link>
+            </Button>
+          </div>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+
+      {/* Featured Projects */}
+      <section className="py-16">
+        <div className="max-w-5xl">
+          <h2>Featured Projects</h2>
+
+          <p className="lead mt-4">
+            A selection of personal and professional work showcasing modern web
+            development practices.
+          </p>
+
+          <div className="mt-8 grid gap-6 md:grid-cols-2">
+            {featuredProjects.map((project) => (
+              <ProjectCard key={project.slug} project={project} />
+            ))}
+          </div>
         </div>
-      </main>
-    </div>
+      </section>
+
+      {/* Technical Focus */}
+      <section className="py-16">
+        <div className="max-w-5xl">
+          <h2>Technical Focus</h2>
+
+          <p className="lead mt-4">
+            Technologies and tools I regularly use to design, build, and deploy
+            modern web applications.
+          </p>
+
+          <div className="mt-8 grid gap-6 md:grid-cols-3"></div>
+        </div>
+      </section>
+
+      {/* Contact CTA */}
+      <section className="py-24">
+        <div className="max-w-3xl">
+          <h2>Let's Build Something Great</h2>
+
+          <p className="lead mt-4">
+            I'm always interested in discussing new projects, opportunities, and
+            interesting technical challenges.
+          </p>
+
+          <div className="mt-8">
+            <Button asChild>
+              <Link href="/contact">Get In Touch</Link>
+            </Button>
+          </div>
+        </div>
+      </section>
+    </PageLayout>
   );
 }
