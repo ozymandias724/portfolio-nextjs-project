@@ -3,7 +3,9 @@ import { PageLayout } from "@/components/layout/PageLayout";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+
 import type { Metadata } from "next";
+
 import { siteConfig } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -11,6 +13,7 @@ export const metadata: Metadata = {
   description:
     "Get in touch regarding software development, technical leadership, collaboration, or consulting opportunities.",
 };
+
 export default function ContactPage() {
   return (
     <PageLayout>
@@ -44,7 +47,7 @@ export default function ContactPage() {
                   <p className="font-medium">GitHub</p>
 
                   <a
-                    href="#"
+                    href={siteConfig.socials.github}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-muted-foreground hover:text-foreground"
@@ -57,7 +60,7 @@ export default function ContactPage() {
                   <p className="font-medium">LinkedIn</p>
 
                   <a
-                    href="#"
+                    href={siteConfig.socials.linkedin}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-muted-foreground hover:text-foreground"
@@ -84,26 +87,38 @@ export default function ContactPage() {
               possible.
             </p>
 
-            <form className="mt-12 space-y-6">
+            <form
+              action="https://formspree.io/f/xdajqobb"
+              method="POST"
+              className="mt-12 space-y-6"
+            >
+              <input
+                type="hidden"
+                name="_subject"
+                value="New Portfolio Contact Form Submission"
+              />
+
               <div className="grid gap-6 md:grid-cols-2">
                 <div className="space-y-2">
-                  <label htmlFor="name">{siteConfig.name}</label>
+                  <label htmlFor="name">Name</label>
 
                   <Input
                     id="name"
                     name="name"
+                    required
                     autoComplete="name"
                     placeholder="Jane Doe"
                   />
                 </div>
 
                 <div className="space-y-2">
-                  <label htmlFor="email">{siteConfig.email}</label>
+                  <label htmlFor="email">Email</label>
 
                   <Input
                     id="email"
                     name="email"
                     type="email"
+                    required
                     autoComplete="email"
                     placeholder="jane@example.com"
                   />
@@ -126,6 +141,7 @@ export default function ContactPage() {
                 <Textarea
                   id="message"
                   name="message"
+                  required
                   rows={8}
                   placeholder="Tell me a little about your project, goals, or what you'd like to discuss..."
                 />
