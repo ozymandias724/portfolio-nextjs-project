@@ -22,7 +22,7 @@ export async function generateStaticParams() {
     slug: project.slug,
   }));
 }
-export const dynamicParams = false;
+// export const dynamicParams = false;
 
 export default async function ProjectPage({
   params,
