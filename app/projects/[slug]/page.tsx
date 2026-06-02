@@ -17,6 +17,13 @@ export const metadata: Metadata = {
     "A collection of software projects, open-source work, and experiments built with modern web technologies.",
 };
 
+export async function generateStaticParams() {
+  return projects.map((project) => ({
+    slug: project.slug,
+  }));
+}
+export const dynamicParams = false;
+
 export default async function ProjectPage({
   params,
 }: {
