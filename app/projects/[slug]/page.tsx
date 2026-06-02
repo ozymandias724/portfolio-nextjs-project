@@ -8,14 +8,14 @@ import { Badge } from "@/components/ui/badge";
 import { projects } from "@/lib/projects";
 import { PageLayout } from "@/components/layout/PageLayout";
 
+import { getProjectContent } from "@/lib/content";
+import { MDXContent } from "@/components/content/MDXContent";
 
 export const metadata: Metadata = {
   title: "Projects",
   description:
     "A collection of software projects, open-source work, and experiments built with modern web technologies.",
 };
-
-
 
 export default async function ProjectPage({
   params,
@@ -29,6 +29,8 @@ export default async function ProjectPage({
   if (!project) {
     return <h1>Project not found</h1>;
   }
+
+  const content = await getProjectContent(project.slug);
 
   return (
     <PageLayout>
@@ -90,9 +92,9 @@ export default async function ProjectPage({
             </div>
           )}
 
-          {project.content && (
-            <div className="mt-12 space-y-6">
-              <p>{project.content}</p>
+          {content && (
+            <div className="mt-12 mdx-content">
+              <MDXContent source={content} />
             </div>
           )}
         </div>

@@ -1,0 +1,51 @@
+# Aviphy
+
+A lightweight JavaScript library for converting GIF and animated WebP media into modern AVIF formats.
+
+## Overview
+
+Aviphy was created to simplify the process of converting animated media into AVIF, a modern image format that offers significantly improved compression and quality compared to legacy formats. The project provides a straightforward TypeScript API while leveraging FFmpeg under the hood for powerful media processing capabilities.
+
+## The Problem
+
+Modern image formats can dramatically reduce bandwidth usage and improve performance, but the tooling available to JavaScript developers is often fragmented, difficult to integrate, or heavily tied to specific workflows.
+
+While converting static images to AVIF is relatively straightforward, handling animated GIF and WebP content presents additional challenges. Existing solutions often require developers to build and maintain their own FFmpeg pipelines or rely on large, inflexible dependencies.
+
+## The Solution
+
+Aviphy provides a lightweight abstraction layer over FFmpeg, allowing developers to convert animated media into AVIF using a simple and predictable JavaScript API.
+
+The goal was to make advanced media processing accessible without forcing developers to become experts in FFmpeg command-line arguments or media encoding internals.
+
+## Technical Challenges
+
+### FFmpeg Integration
+
+One of the primary challenges was designing a clean developer experience while maintaining access to FFmpeg's powerful conversion capabilities.
+
+### Animated Media Processing
+
+Animated GIF and WebP files require special handling to preserve frame timing, quality, and playback behavior during conversion.
+
+### API Design
+
+The library was designed to remain lightweight and composable while supporting future expansion and customization.
+
+## Key Technologies
+
+* TypeScript
+* FFmpeg
+* AVIF
+* Bun
+* Node.js
+
+## Outcome
+
+Aviphy was successfully published as an open-source package and serves as both a practical utility and an exploration of modern media optimization workflows.
+
+The project continues to evolve as new use cases and performance opportunities are identified.
+
+## What I Learned
+
+Building Aviphy reinforced the importance of developer experience, API design, and abstraction. The most technically powerful solution is not always the most useful one. Creating approachable tooling often requires as much attention to usability as implementation.

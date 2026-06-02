@@ -7,11 +7,7 @@ import { projects } from "@/lib/projects";
 import { ProjectCard } from "@/components/projects/ProjectCard";
 // import { Metadata } from "next";
 
-
-
-const featuredProjects = projects.filter(
-  (project) => project.featured
-);
+const featuredProjects = projects.filter((project) => project.featured);
 
 export default function HomePage() {
   return (
@@ -21,13 +17,11 @@ export default function HomePage() {
         <div className="max-w-3xl">
           <p className="eyebrow">Hi, I'm Kyle.</p>
 
-          <h1 className="mt-4">
-            Frontend Developer Building Modern Web Experiences
-          </h1>
+          <h1 className="mt-4">I Create Modern Web Solutions</h1>
 
           <p className="lead mt-6">
-            I create fast, accessible, and maintainable web applications using
-            React, TypeScript, Next.js, and modern development workflows.
+            Bringing together technical experience, business understanding, and
+            modern development tools to turn ideas into software.
           </p>
 
           <div className="mt-8 flex gap-4">

@@ -155,3 +155,23 @@
     @apply text-sm font-medium;
   }
 }
+/* basic MDX content styling */
+@layer components {
+  .mdx-content {
+    & h1 {
+      @apply text-4xl font-bold mt-12 mb-6;
+    }
+
+    & h2 {
+      @apply text-2xl font-semibold mt-10 mb-4;
+    }
+
+    & p {
+      @apply mb-4 leading-relaxed;
+    }
+
+    & ul {
+      @apply my-4 ml-6 list-disc;
+    }
+  }
+}

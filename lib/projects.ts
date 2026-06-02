@@ -50,26 +50,24 @@ export const projects: Project[] = [
 
     status: "In Progress",
   },
-
   {
-    slug: "lorem-project-1",
-    title: "Lorem Project Ipsum 1",
-    featured: false,
+    slug: "nu-start-theme",
+    title: "NU Start (Theme)",
+    featured: true,
 
     shortDescription:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      "NU_Start is a WordPress theme built using Gutenberg (Block Editor) for Northeastern University's Global Campus initiative. The theme is designed to be deployed across multiple sites within the university, providing a consistent and modern design framework that can be easily customized to meet the specific needs of each site. It includes a variety of pre-designed templates and styles, as well as support for custom blocks and widgets to enhance functionality.",
 
-    status: "Client Project",
+    status: "Client",
   },
-
   {
-    slug: "lorem-project-2",
-    title: "Lorem Project Ipsum 2",
-    featured: false,
+    slug: "nu-start-blocks",
+    title: "NU Start (Blocks)",
+    featured: true,
 
     shortDescription:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+      "NU_Start is a WordPress theme built using Gutenberg (Block Editor) for Northeastern University's Global Campus initiative. The project includes a custom block library that provides a set of reusable blocks for content creation, allowing for flexible and dynamic page layouts.",
 
-    status: "Archived",
+    status: "Client",
   },
 ];
