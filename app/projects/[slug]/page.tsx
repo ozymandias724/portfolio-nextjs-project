@@ -2,14 +2,16 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 
+import { notFound } from "next/navigation";
+
+import { PageLayout } from "@/components/layout/PageLayout";
+import { MDXContent } from "@/components/content/MDXContent";
+
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 
 import { projects } from "@/lib/projects";
-import { PageLayout } from "@/components/layout/PageLayout";
-
 import { getProjectContent } from "@/lib/content";
-import { MDXContent } from "@/components/content/MDXContent";
 
 export const metadata: Metadata = {
   title: "Projects",
@@ -17,27 +19,33 @@ export const metadata: Metadata = {
     "A collection of software projects, open-source work, and experiments built with modern web technologies.",
 };
 
+// Generate all project pages at build time.
 export async function generateStaticParams() {
   return projects.map((project) => ({
     slug: project.slug,
   }));
 }
-// export const dynamicParams = false;
 
-export default async function ProjectPage({
-  params,
-}: {
-  params: Promise<{ slug: string }>;
-}) {
+type ProjectPageProps = {
+  params: Promise<{
+    slug: string;
+  }>;
+};
+
+export default async function ProjectPage({ params }: ProjectPageProps) {
+  // Next.js 16 provides route params asynchronously.
   const { slug } = await params;
 
   const project = projects.find((project) => project.slug === slug);
 
   if (!project) {
-    return <h1>Project not found</h1>;
+    notFound();
   }
 
-  // const content = await getProjectContent(project.slug);
+  // TODO:
+  // Cloudflare deployment currently fails when loading MDX
+  // via fs.readFile(). Re-enable after content loading
+  // is refactored or deployment issue is resolved.
   const content = null;
 
   return (
