@@ -30,7 +30,8 @@ export default async function ProjectPage({
     return <h1>Project not found</h1>;
   }
 
-  const content = await getProjectContent(project.slug);
+  // const content = await getProjectContent(project.slug);
+  const content = null;
 
   return (
     <PageLayout>
