@@ -20,6 +20,15 @@ export const metadata: Metadata = {
 };
 
 // Generate all project pages at build time.
+//
+// This allows Next.js to pre-render every known project route:
+//
+// /projects/aviphy
+// /projects/portfolio-site
+// /projects/nu-start-theme
+// /projects/nu-start-blocks
+//
+// rather than generating them on demand at runtime.
 export async function generateStaticParams() {
   return projects.map((project) => ({
     slug: project.slug,
@@ -36,17 +45,39 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
   // Next.js 16 provides route params asynchronously.
   const { slug } = await params;
 
+  // Project metadata is stored in lib/projects.ts.
   const project = projects.find((project) => project.slug === slug);
 
   if (!project) {
     notFound();
   }
 
-  // TODO:
-  // Cloudflare deployment currently fails when loading MDX
-  // via fs.readFile(). Re-enable after content loading
-  // is refactored or deployment issue is resolved.
-  const content = null;
+  // Feature flag for project MDX content.
+  //
+  // Toggle this while debugging deployment issues without needing
+  // to comment out imports, rendering logic, or content loading.
+  const ENABLE_PROJECT_CONTENT = true;
+
+  // Project content is loaded from:
+  //
+  // content/projects/[slug].mdx
+  //
+  // Example:
+  // slug: "aviphy"
+  // -> content/projects/aviphy.mdx
+  //
+  // If loading fails, we log the error and continue rendering
+  // the project page without MDX content.
+  const content = ENABLE_PROJECT_CONTENT
+    ? await getProjectContent(project.slug).catch((error) => {
+        console.error(
+          `Failed to load project content for "${project.slug}"`,
+          error,
+        );
+
+        return null;
+      })
+    : null;
 
   return (
     <PageLayout>
@@ -108,6 +139,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             </div>
           )}
 
+          {/* Render project-specific MDX content when available. */}
           {content && (
             <div className="mt-12 mdx-content">
               <MDXContent source={content} />
